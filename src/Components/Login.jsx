@@ -8,19 +8,17 @@ import { BASE_URL } from "../utils/constants";
 const Login = () => {
   const [emailId, setEmailId] = useState("thala@gmail.com");
   const [password, setPassword] = useState("bhW@123#");
-const dispatch = useDispatch();
-const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleLogin = async () => {
     try {
       const res = await axios.post(
-        
-       BASE_URL + "/login",
+        BASE_URL + "/login",
         {
           emailId,
           password,
         },
         { withCredentials: true }
-        
       );
       // console.log(res.data);
       dispatch(addUser(res.data));
