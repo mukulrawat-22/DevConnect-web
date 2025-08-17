@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Components/Login";
 import Body from "./Components/Body";
-import Feed from "./Components/feed";
+import Feed from "./Components/Feed";
 import Profile from "./Components/Profile";
 import appStore from "./utils/appStore";
 import { Provider } from "react-redux";

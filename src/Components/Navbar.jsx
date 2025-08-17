@@ -21,25 +21,25 @@ const Navbar = () => {
         console.error("Logout failed:", err);
        }
      }
-  console.log(user);
+  
   return (
     <div className="navbar bg-base-300 shadow-sm">
       <div className="flex-1">
-        <Link to="/" className="btn btn-ghost text-xl">
+        <Link to="/feed" className="btn btn-ghost text-xl">
           DevConnect
         </Link>
       </div>
       <div className="flex gap-2">
         {user && (
           <div className="dropdown dropdown-end mx-3 flex  gap-2">
-            <p className="mx-2 my-2">Welcome, {user.firstName}</p>
+            <p className="mx-2 my-2">Welcome, {user.firstName} </p>
             <div
               tabIndex={0}
               role="button"
               className="btn btn-ghost btn-circle avatar"
             >
               <div className="w-10 rounded-full ">
-                <img alt="user photo" src={user.photoURL} />
+                <img alt="user photo" src={user.photoUrl} />
               </div>
             </div>
             <ul

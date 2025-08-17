@@ -18,6 +18,7 @@ export const Body = () => {
       const res = await axios.get(BASE_URL + "/profile/view", {
         withCredentials: true,
       });
+      console.log("Fetched user:", res.data);
       dispatch(addUser(res.data));
     } catch (err) {
         if(err.status === 401){
@@ -29,6 +30,7 @@ export const Body = () => {
   useEffect(() => {
     fetchUser();
   }, []);
+
 
   return (
     <div>

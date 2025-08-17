@@ -21,7 +21,7 @@ const Login = () => {
         },
         { withCredentials: true }
       );
-      // console.log(res.data);
+    
       dispatch(addUser(res.data));
       navigate("/feed");
     } catch (err) {
@@ -29,7 +29,7 @@ const Login = () => {
       setError(err?.response?.data || "🤔 Hmm... that didn’t work...");
     }
   };
-
+  
   return (
     <div className="flex justify-center my-10">
       <div className="card bg-base-300 w-96 shadow-sm">
