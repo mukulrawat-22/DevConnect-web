@@ -11,6 +11,7 @@ import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Connection from "./Components/Connection";
+import Requests from "./Components/Requests";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               <Route path="/feed" element={<Feed />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/connections" element={<Connection />} />
+              <Route path="/requests" element={<Requests />} />
             </Route>
           </Routes>
         </BrowserRouter>

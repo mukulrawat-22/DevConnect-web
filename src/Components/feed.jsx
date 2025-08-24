@@ -30,7 +30,7 @@ const Feed = () => {
   return (
     <div className="flex flex-col items-center justify-center mt-6">
       {feed.length > 0 ? (
-        <UserCard user={feed[0]} />  
+        <UserCard user={feed[3]} />  
       ) : (
         <p className="text-gray-500">No users found in feed</p>
       )}
