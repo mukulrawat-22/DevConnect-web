@@ -26,13 +26,16 @@ const Feed = () => {
   useEffect(() => {
     getfeed();
   }, []);
+  if(!feed){
+    return <h1 className="text-center mt-10">Loading feed...</h1>;
+  }
 
   return (
     <div className="flex flex-col items-center justify-center mt-6">
       {feed.length > 0 ? (
-        <UserCard user={feed[3]} />  
+        <UserCard user={feed[0]} />  
       ) : (
-        <p className="text-gray-500">No users found in feed</p>
+        <p className="my-4 text-2xl font-bold text-gray-500">oops! No new users found in feed</p>
       )}
     </div>
   );

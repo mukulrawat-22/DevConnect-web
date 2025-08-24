@@ -1,24 +1,41 @@
 import React from "react";
+import { BASE_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { removeUserFromFeed } from "../utils/feedSlics";
+import axios from "axios";
 
-const UserCard = ({ user, onIgnore, onInterested }) => {
+const UserCard = ({ user }) => {
   if (!user) {
     return <div className="text-gray-500">Loading...</div>;
   }
 
-  const { firstName, lastName, photoUrl, about, age, gender, email } = user;
+  const { _id, firstName, lastName, photoUrl, about, age, gender, email } =
+    user;
+  const dispatch = useDispatch();
+  const handleSendRequest = async (status, _id) => {
+    try {
+      const res = await axios.post(
+        BASE_URL + "/request/send/" + status + "/" + _id,
+        {},
+        { withCredentials: true }
+      );
+      dispatch(removeUserFromFeed(_id));
+    } catch (err) {
+      console.error("Error sending request:", err);
+    }
+  };
 
   return (
     <div className="flex justify-center items-center">
       <div className="bg-white w-96 shadow-xl rounded-2xl overflow-hidden border border-gray-200">
         {/* User Image */}
         <div className="w-full h-95">
-  <img
-    src={photoUrl || "/default-avatar.png"}
-    alt={`${firstName || "User"} ${lastName || ""}`}
-    className="w-full h-full object-cover object-[center_2%]"
-  />
-</div>
-
+          <img
+            src={photoUrl || "/default-avatar.png"}
+            alt={`${firstName || "User"} ${lastName || ""}`}
+            className="w-full h-full object-cover object-[center_2%]"
+          />
+        </div>
 
         {/* User Details */}
         <div className="p-5 text-center">
@@ -47,13 +64,13 @@ const UserCard = ({ user, onIgnore, onInterested }) => {
           <div className="flex justify-center gap-4 mt-5">
             <button
               className="px-5 py-2 bg-red-500 text-white rounded-lg shadow hover:bg-red-600 transition"
-              onClick={onIgnore}
+              onClick={() => handleSendRequest("ignore", _id)}
             >
               Ignore
             </button>
             <button
               className="px-5 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 transition"
-              onClick={onInterested}
+              onClick={() => handleSendRequest("interested", _id)}
             >
               Interested
             </button>
