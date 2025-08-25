@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userslics";
 import axios from "axios";
 import { toast } from "react-toastify"; // ✅ import toastify
+import { useNavigate } from "react-router-dom";
 
 const EditProfile = ({ user }) => {
   const [firstName, setfirstName] = useState(user?.firstName || "");
@@ -16,6 +17,7 @@ const EditProfile = ({ user }) => {
 
   const [error, setError] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const saveProfile = async () => {
     setError("");
@@ -33,10 +35,11 @@ const EditProfile = ({ user }) => {
         { withCredentials: true }
       );
 
-      dispatch(addUser(res.data));
+      dispatch(addUser(res.data.data));
 
       // ✅ Success toast
       toast.success("Profile updated successfully 🎉");
+      navigate("/feed");
     } catch (err) {
       const msg = err?.response?.data || "🤔 Hmm... that didn’t work...";
       setError(msg);
@@ -123,7 +126,7 @@ const EditProfile = ({ user }) => {
           <p className="text-red-500 p-2">{error}</p>
 
           <div className="card-actions justify-center">
-            <button className="btn btn-primary" onClick={saveProfile}>
+            <button className="btn btn-primary" onClick={saveProfile }>
               Save Profile
             </button>
           </div>
